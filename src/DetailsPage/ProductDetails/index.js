@@ -11,22 +11,22 @@ import {
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState } from "react";
+import useCart from "../../common/hooks/useCart";
 import useProduct from "../../common/hooks/useProduct";
 
 export default function ProductDetails() {
-  const { title, description, image, category, price, rate } = useProduct();
-
+  const { id, title, description, image, category, price, rate } = useProduct();
   const [qty, setQty] = useState(0);
-  const addProductToCart = () => {
-    console.log(qty);
-  };
+  const { addToCart } = useCart();
 
+  if (!id) return <div>Loading...</div>;
   return (
     <Card sx={{ boxShadow: "none" }}>
       <Box
         sx={{
           display: "flex",
           alignItems: "center",
+          gap: 2,
           "> *": {
             flex: 1,
           },
@@ -37,8 +37,9 @@ export default function ProductDetails() {
           sx={{
             objectFit: "contain",
             padding: 2,
-            maxWidth: "100%",
-            maxHeight: "60vh",
+            maxWidth: "clamp(16rem, 40%, 100%)",
+            maxHeight: "70vh",
+            flexGrow: 0,
           }}
           image={image}
           alt={title}
@@ -75,7 +76,7 @@ export default function ProductDetails() {
             />
           </CardContent>
           <CardActions sx={{ paddingX: 2 }}>
-            <Button variant="contained" onClick={() => addProductToCart()}>
+            <Button variant="contained" onClick={() => addToCart(id, qty)}>
               Ajouter au panier
             </Button>
           </CardActions>
