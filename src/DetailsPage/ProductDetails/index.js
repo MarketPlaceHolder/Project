@@ -12,14 +12,12 @@ import {
 import { Box } from "@mui/system";
 import { useState } from "react";
 import useCart from "../../common/hooks/useCart";
-import useProduct from "../../common/hooks/useProduct";
 
-export default function ProductDetails() {
-  const { id, title, description, image, category, price, rate } = useProduct();
-  const [qty, setQty] = useState(0);
+export default function ProductDetails({ product }) {
+  const { id, title, description, image, category, price, rate } = product;
+  const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
 
-  if (!id) return <div>Loading...</div>;
   return (
     <Card sx={{ boxShadow: "none" }}>
       <Box
@@ -38,7 +36,7 @@ export default function ProductDetails() {
             objectFit: "contain",
             padding: 2,
             maxWidth: "clamp(16rem, 40%, 100%)",
-            maxHeight: "70vh",
+            maxHeight: "50vh",
             flexGrow: 0,
           }}
           image={image}
@@ -68,6 +66,7 @@ export default function ProductDetails() {
               label="Quantité"
               type="number"
               variant="standard"
+              defaultValue={qty}
               size="small"
               onChange={(e) => setQty(e.target.value)}
               sx={{
