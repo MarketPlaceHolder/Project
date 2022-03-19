@@ -20,7 +20,6 @@ export default function ProductDetails({
   const { addToCart } = useCart();
 
   const handleAddToCard = () => {
-    if (isNaN(qty) || qty < 1) return;
     addToCart(id, qty);
   };
 
