@@ -1,4 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/material";
+import { Card, CardContent, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import useProduct from "../../common/hooks/useProduct";
@@ -11,22 +11,15 @@ export default function ProductProposal({ category }) {
       <Typography gutterBottom variant="h6">
         Articles similaires
       </Typography>
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          gap: 2,
-          "> *": {
-            flex: 1,
-          },
-        }}
-      >
+      <Grid container spacing={2}>
         {proposal.map((p, i) => (
-          <Card key={i}>
-            <CardContent>{p.title}</CardContent>
-          </Card>
+          <Grid item xs={12} sm={6} md={4}>
+            <Card key={i}>
+              <CardContent>{p.title}</CardContent>
+            </Card>
+          </Grid>
         ))}
-      </Box>
+      </Grid>
     </Box>
   );
 }
