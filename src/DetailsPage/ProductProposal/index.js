@@ -13,8 +13,8 @@ export default function ProductProposal({ category }) {
       </Typography>
       <Grid container spacing={2}>
         {proposal.map((p, i) => (
-          <Grid item xs={12} sm={6} md={4}>
-            <Card key={i}>
+          <Grid key={i} item xs={12} sm={6} md={4}>
+            <Card>
               <CardContent>{p.title}</CardContent>
             </Card>
           </Grid>
