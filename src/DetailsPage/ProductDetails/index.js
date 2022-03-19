@@ -50,7 +50,7 @@ export default function ProductDetails({
             ml={1}
             color={"primary.main"}
           >
-            {price}€
+            {price.toFixed(2)}€
           </Typography>
         </Box>
         <TextField
