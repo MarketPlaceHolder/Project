@@ -1,6 +1,5 @@
 export default function useCart() {
   const addToCart = (productId, qty) => {
-    if (isNaN(qty) || qty < 1) return;
     const cart = JSON.parse(window.localStorage.getItem("cart")) || [];
     const productOrUndefined = cart.find((obj) => productId === obj.id);
     const product = productOrUndefined || { id: productId, qty: 0 };

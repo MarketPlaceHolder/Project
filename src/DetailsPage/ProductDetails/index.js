@@ -13,10 +13,16 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 import useCart from "../../common/hooks/useCart";
 
-export default function ProductDetails({ product }) {
-  const { id, title, description, image, category, price, rate } = product;
+export default function ProductDetails({
+  product: { id, title, description, image, category, price, rate },
+}) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
+
+  const handleAddToCard = () => {
+    if (isNaN(qty) || qty < 1) return;
+    addToCart(id, qty);
+  };
 
   return (
     <Card sx={{ boxShadow: "none" }}>
@@ -75,7 +81,7 @@ export default function ProductDetails({ product }) {
             />
           </CardContent>
           <CardActions sx={{ paddingX: 2 }}>
-            <Button variant="contained" onClick={() => addToCart(id, qty)}>
+            <Button variant="contained" onClick={() => handleAddToCard()}>
               Ajouter au panier
             </Button>
           </CardActions>
