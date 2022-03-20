@@ -1,5 +1,6 @@
-import { display, styled } from "@mui/system";
+import { styled } from "@mui/system";
 import React from "react";
+import ProductsCard from "./ProductsCard";
 
 const AllProductsPage = styled("div")({});
 
@@ -11,7 +12,13 @@ export default () => {
     setProducts(data);
   }, []);
   const displayProduct = (currentProduct) => {
-    return currentProduct.title;
+    return (
+      <ProductsCard
+        title={currentProduct.title}
+        image={currentProduct.image}
+        category={currentProduct.category}
+      ></ProductsCard>
+    );
   };
   return <AllProductsPage>{products.map(displayProduct)}</AllProductsPage>;
 };
