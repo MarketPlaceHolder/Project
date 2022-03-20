@@ -17,6 +17,7 @@ export default () => {
         title={currentProduct.title}
         image={currentProduct.image}
         category={currentProduct.category}
+        id={currentProduct.id}
       ></ProductsCard>
     );
   };
