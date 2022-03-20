@@ -25,7 +25,6 @@ export default function TemporaryDrawer() {
   const urls = [
     { text: "Home", to: "/" },
     { text: "Products", to: "/products" },
-    { text: "Product 7", to: "/products/7" },
   ];
   const list = (anchor) => (
     <Box
