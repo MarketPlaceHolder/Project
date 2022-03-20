@@ -2,6 +2,7 @@ import { createContext } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import useCart from "./common/hooks/useCart";
 import Header from "./common/components/Header";
+import Navigation from "./common/components/Navigation";
 
 import DetailsPage from "./DetailsPage";
 
@@ -12,6 +13,7 @@ function App() {
     <BrowserRouter>
       <CartContext.Provider value={useCart()}>
         <Header></Header>
+        <Navigation></Navigation>
         <Routes>
           <Route path="*" element={<div>Not found</div>} />
           <Route path="/products/:productId" element={<DetailsPage />} />
