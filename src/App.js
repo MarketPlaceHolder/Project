@@ -15,7 +15,6 @@ function App() {
     <BrowserRouter>
       <CartContext.Provider value={useCart()}>
         <Header></Header>
-        <Navigation></Navigation>
         <Breadcrumb></Breadcrumb>
         <Routes>
           <Route path="*" element={<div>Not found</div>} />
