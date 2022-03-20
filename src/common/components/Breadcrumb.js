@@ -4,14 +4,18 @@ import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import { Link as RouterLink, useLocation } from "react-router-dom";
 import { Link } from "@mui/material";
+import { styled } from "@mui/system";
 
 function handleClick(event) {
   event.preventDefault();
   console.info("You clicked a breadcrumb.");
 }
 const LinkRouter = (props) => <Link {...props} component={RouterLink}></Link>;
+const Breadcrumb = styled("div")({
+  margin: "20px",
+});
 
-export default function Breadcrumb() {
+export default () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/");
   const displayPath = (path, key) => {
@@ -33,10 +37,10 @@ export default function Breadcrumb() {
     );
   };
   return (
-    <div role="presentation" onClick={handleClick}>
+    <Breadcrumb role="presentation" onClick={handleClick}>
       <Breadcrumbs aria-label="breadcrumb">
         {pathnames.map(displayPath)}
       </Breadcrumbs>
-    </div>
+    </Breadcrumb>
   );
-}
+};

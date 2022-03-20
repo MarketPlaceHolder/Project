@@ -2,7 +2,10 @@ import { styled } from "@mui/system";
 import React from "react";
 import ProductsCard from "./ProductsCard";
 
-const AllProductsPage = styled("div")({});
+const AllProductsPage = styled("div")({
+  display: "flex",
+  flexWrap: "wrap",
+});
 
 export default () => {
   const [products, setProducts] = React.useState([]);
