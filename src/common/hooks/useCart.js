@@ -1,6 +1,6 @@
 export default function useCart() {
   const orderIsValid = ({ qty }) => {
-    return !isNaN(qty) && qty > 1;
+    return !isNaN(qty) && qty > 0;
   };
 
   const addToCart = (productId, qty) => {
