@@ -17,7 +17,7 @@ export default function ProductDetails({
   const { addToCart } = useCart();
 
   const handleAddToCard = () => {
-    addToCart(id, qty);
+    addToCart({ id }, qty);
   };
 
   return (
