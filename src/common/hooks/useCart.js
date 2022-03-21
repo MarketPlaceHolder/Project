@@ -21,7 +21,6 @@ export default function useCart() {
       ? updatedCart
       : [...cart, { id: id, qty: qty }];
     setCart(finalCart);
-    console.log(finalCart);
   };
 
   useEffect(() => {
