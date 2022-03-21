@@ -25,6 +25,7 @@ export default function useCart() {
 
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
   }, [cart]);
 
   return { cart, addToCart };
