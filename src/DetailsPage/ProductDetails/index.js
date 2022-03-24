@@ -11,7 +11,14 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../App";
 
 export default function ProductDetails({ product }) {
-  const { title, description, image, category, price, rate } = product;
+  const {
+    title,
+    description,
+    image,
+    category,
+    price,
+    rating: { rate },
+  } = product;
   const [qty, setQty] = useState(1);
   const { addToCart } = useContext(CartContext);
 

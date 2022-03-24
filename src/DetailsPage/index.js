@@ -5,8 +5,7 @@ import ProductProposal from "./ProductProposal";
 import { Box } from "@mui/system";
 
 export default function DetailsPage() {
-  const product = useProduct();
-
+  const { product } = useProduct();
   return (
     <Container maxWidth="lg">
       {product.id ? (
