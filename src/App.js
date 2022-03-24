@@ -7,10 +7,9 @@ import DetailsPage from "./DetailsPage";
 export const CartContext = createContext();
 
 function App() {
-  const { cart, addToCart } = useCart();
   return (
     <BrowserRouter>
-      <CartContext.Provider value={{ cart, addToCart }}>
+      <CartContext.Provider value={useCart()}>
         <Routes>
           <Route path="*" element={<div>Not found</div>} />
           <Route path="/products/:productId" element={<DetailsPage />} />

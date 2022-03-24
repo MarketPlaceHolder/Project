@@ -5,22 +5,40 @@ export default function useCart() {
     JSON.parse(window.localStorage.getItem("cart")) || []
   );
 
+  const nbItems = cart.length;
+
+  const productOrUndefined = (id) => cart.find((obj) => obj.id === id);
+
   const orderIsValid = ({ qty }) => {
     return !isNaN(qty) && qty > 0;
   };
 
-  const addToCart = ({ id }, qty) => {
+  const addToCart = (product, qty) => {
     if (!orderIsValid({ qty })) return;
-    const productOrUndefined = cart.find((obj) => id === obj.id);
-    const updatedCart = cart.map((product) => {
-      return id === product.id
-        ? { id: product.id, qty: parseInt(product.qty) + parseInt(qty) }
-        : product;
+    const updatedCart = cart.map((item) => {
+      return product.id === item.id
+        ? {
+            id: item.id,
+            qty: parseInt(item.qty) + parseInt(qty),
+            data: product,
+          }
+        : item;
     });
-    const finalCart = productOrUndefined
+    const finalCart = productOrUndefined(product.id)
       ? updatedCart
-      : [...cart, { id: id, qty: qty }];
+      : [...cart, { id: product.id, qty: qty, data: product }];
     setCart(finalCart);
+  };
+
+  const removeFromCart = ({ id }) => {
+    if (productOrUndefined(id)) {
+      const finalCart = cart.filter((product) => product.id !== id);
+      setCart(finalCart);
+    }
+  };
+
+  const clearCart = () => {
+    setCart([]);
   };
 
   useEffect(() => {
@@ -28,5 +46,5 @@ export default function useCart() {
     console.log(cart);
   }, [cart]);
 
-  return { cart, addToCart };
+  return { cart, nbItems, addToCart, removeFromCart, clearCart };
 }

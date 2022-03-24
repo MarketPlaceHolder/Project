@@ -10,14 +10,13 @@ import { Box } from "@mui/system";
 import { useContext, useState } from "react";
 import { CartContext } from "../../App";
 
-export default function ProductDetails({
-  product: { id, title, description, image, category, price, rate },
-}) {
+export default function ProductDetails({ product }) {
+  const { title, description, image, category, price, rate } = product;
   const [qty, setQty] = useState(1);
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCard = () => {
-    addToCart({ id }, qty);
+    addToCart(product, qty);
   };
 
   return (
@@ -40,7 +39,12 @@ export default function ProductDetails({
           {description}
         </Typography>
         {rate && (
-          <Rating name="half-rating-read" value={rate} precision={0.5} />
+          <Rating
+            name="half-rating-read"
+            value={rate}
+            precision={0.5}
+            readOnly
+          />
         )}
         <Box marginBottom={2}>
           Prix :
