@@ -5,7 +5,7 @@ import useProduct from "../common/hooks/useProduct";
 import ProductProposal from "./ProductProposal";
 
 export default function DetailsPage() {
-  const product = useProduct();
+  const { product } = useProduct();
   return (
     <Container maxWidth="lg">
       {product.id && <ProductDetails product={product} />}

@@ -11,7 +11,15 @@ import { useState } from "react";
 import useCart from "../../common/hooks/useCart";
 
 export default function ProductDetails({
-  product: { id, title, description, image, category, price, rate },
+  product: {
+    id,
+    title,
+    description,
+    image,
+    category,
+    price,
+    rating: { rate },
+  },
 }) {
   const [qty, setQty] = useState(1);
   const { addToCart } = useCart();
