@@ -26,7 +26,7 @@ export default function useCart() {
     });
     const finalCart = productOrUndefined(product.id)
       ? updatedCart
-      : [...cart, { id: product.id, qty: qty, data: product }];
+      : [...cart, { id: product.id, qty: parseInt(qty), data: product }];
     setCart(finalCart);
   };
 
