@@ -7,7 +7,8 @@ export default function useCart() {
 
   const nbItems = cart.length;
 
-  const productOrUndefined = (id) => cart.find((obj) => obj.id === id);
+  const productOrUndefined = (productId) =>
+    cart.find((cartItem) => cartItem.id === productId);
 
   const orderIsValid = ({ qty }) => {
     return !isNaN(qty) && qty > 0;
@@ -15,24 +16,24 @@ export default function useCart() {
 
   const addToCart = (product, qty) => {
     if (!orderIsValid({ qty })) return;
-    const updatedCart = cart.map((item) => {
-      return product.id === item.id
-        ? {
-            ...product,
-            qty: parseInt(item.qty) + parseInt(qty),
-          }
-        : item;
+
+    const updatedCart = cart.map((cartItem) => {
+      return product.id === cartItem.id
+        ? { ...product, qty: parseInt(cartItem.qty) + parseInt(qty) }
+        : cartItem;
     });
+
     const finalCart = productOrUndefined(product.id)
       ? updatedCart
       : [...cart, { ...product, qty: parseInt(qty) }];
+
     setCart(finalCart);
   };
 
-  const removeFromCart = ({ id }) => {
-    if (productOrUndefined(id)) {
-      const finalCart = cart.filter((product) => product.id !== id);
-      setCart(finalCart);
+  const removeFromCart = (product) => {
+    if (productOrUndefined(product.id)) {
+      const updatedCart = cart.filter((cartItem) => cartItem.id !== product.id);
+      setCart(updatedCart);
     }
   };
 
