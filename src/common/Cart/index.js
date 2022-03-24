@@ -23,7 +23,7 @@ export default function Cart() {
         maxWidth={"lg"}
       >
         {cart.map((item) => (
-          <div key={item.id}>{item.data.title}</div>
+          <div key={item.id}>{item.title}</div>
         ))}
       </Dialog>
     </>

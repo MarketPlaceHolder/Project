@@ -18,15 +18,14 @@ export default function useCart() {
     const updatedCart = cart.map((item) => {
       return product.id === item.id
         ? {
-            id: item.id,
+            ...product,
             qty: parseInt(item.qty) + parseInt(qty),
-            data: product,
           }
         : item;
     });
     const finalCart = productOrUndefined(product.id)
       ? updatedCart
-      : [...cart, { id: product.id, qty: parseInt(qty), data: product }];
+      : [...cart, { ...product, qty: parseInt(qty) }];
     setCart(finalCart);
   };
 
