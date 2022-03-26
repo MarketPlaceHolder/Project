@@ -14,6 +14,10 @@ const AllProductsPage = styled("div")({
     gridTemplateColumns: "repeat(4,1fr)",
     gridGap: "30px",
   },
+  "& .searchcombo": {
+    display: "flex",
+    marginBottom: "30px",
+  },
 });
 
 export default () => {
@@ -50,11 +54,13 @@ export default () => {
   };
   return (
     <AllProductsPage>
-      <SearchBar input={input} setInput={setInput}></SearchBar>
-      <CategoryFilter
-        products={products}
-        setSelectedCategory={setSelectedCategory}
-      ></CategoryFilter>
+      <div className="searchcombo">
+        <CategoryFilter
+          products={products}
+          setSelectedCategory={setSelectedCategory}
+        ></CategoryFilter>
+        <SearchBar input={input} setInput={setInput}></SearchBar>
+      </div>
       <div className="grid">
         {products
           .filter(filterCategory)
