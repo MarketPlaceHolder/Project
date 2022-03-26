@@ -3,8 +3,8 @@ import React from "react";
 import ProductsCard from "./ProductsCard";
 
 const AllProductsPage = styled("div")({
-  display: "flex",
-  flexWrap: "wrap",
+  display: "grid",
+  gridTemplateColumns:"repeat(4,1fr)"
 });
 
 export default () => {
