@@ -3,8 +3,14 @@ import React from "react";
 import ProductsCard from "./ProductsCard";
 
 const AllProductsPage = styled("div")({
-  display: "grid",
-  gridTemplateColumns:"repeat(4,1fr)"
+  display: "flex",
+  justifyContent: "center",
+  marginBottom: "50px",
+  "& .grid": {
+    display: "grid",
+    gridTemplateColumns: "repeat(4,1fr)",
+    gridGap: "30px",
+  },
 });
 
 export default () => {
@@ -24,5 +30,9 @@ export default () => {
       ></ProductsCard>
     );
   };
-  return <AllProductsPage>{products.map(displayProduct)}</AllProductsPage>;
+  return (
+    <AllProductsPage>
+      <div className="grid">{products.map(displayProduct)}</div>
+    </AllProductsPage>
+  );
 };
