@@ -2,6 +2,7 @@ import { styled } from "@mui/system";
 import React from "react";
 import ProductsCard from "./ProductsCard";
 import SearchBar from "./SearchBar";
+import CategoryFilter from "./CategoryFilter";
 
 const AllProductsPage = styled("div")({
   display: "flex",
@@ -18,14 +19,24 @@ const AllProductsPage = styled("div")({
 export default () => {
   const [input, setInput] = React.useState("");
   const [products, setProducts] = React.useState([]);
+  const [selectedCategory, setSelectedCategory] = React.useState("");
   React.useEffect(async () => {
     const response = await fetch("/api/products.json");
     const data = await response.json();
     setProducts(data);
   }, []);
+
+  const filterCategory = (currentProduct) => {
+    if (selectedCategory === "") {
+      return true;
+    }
+    return currentProduct.category === selectedCategory;
+  };
+
   const filterProduct = (currentProduct) => {
     return currentProduct.title.toLowerCase().includes(input.toLowerCase());
   };
+
   const displayProduct = (currentProduct) => {
     return (
       <ProductsCard
@@ -40,8 +51,15 @@ export default () => {
   return (
     <AllProductsPage>
       <SearchBar input={input} setInput={setInput}></SearchBar>
+      <CategoryFilter
+        products={products}
+        setSelectedCategory={setSelectedCategory}
+      ></CategoryFilter>
       <div className="grid">
-        {products.filter(filterProduct).map(displayProduct)}
+        {products
+          .filter(filterCategory)
+          .filter(filterProduct)
+          .map(displayProduct)}
       </div>
     </AllProductsPage>
   );
