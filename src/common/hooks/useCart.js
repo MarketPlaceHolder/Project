@@ -5,7 +5,10 @@ export default function useCart() {
     JSON.parse(window.localStorage.getItem("cart")) || []
   );
 
-  const nbItems = cart.length;
+  const nbItems = cart.reduce((acc, val) => acc + parseInt(val.qty), 0);
+
+  const totalPrice =
+    0 || cart.reduce((acc, val) => acc + parseFloat(val.qty * val.price), 0);
 
   const productOrUndefined = (productId) =>
     cart.find((cartItem) => cartItem.id === productId);
@@ -30,8 +33,8 @@ export default function useCart() {
 
   const removeFromCart = (product) => {
     if (productOrUndefined(product.id)) {
-      const updatedCart = cart.filter((cartItem) => cartItem.id !== product.id);
-      setCart(updatedCart);
+      const newCart = cart.filter((cartItem) => cartItem.id !== product.id);
+      setCart(newCart);
     }
   };
 
@@ -44,5 +47,5 @@ export default function useCart() {
     console.log(cart);
   }, [cart]);
 
-  return { cart, nbItems, addToCart, removeFromCart, clearCart };
+  return { cart, nbItems, totalPrice, addToCart, removeFromCart, clearCart };
 }
