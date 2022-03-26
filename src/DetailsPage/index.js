@@ -14,7 +14,7 @@ export default function DetailsPage() {
         <Box
           sx={{
             width: "100%",
-            aspectRatio: "1",
+            height: "50vh",
             display: "grid",
             justifyContent: "center",
             alignItems: "center",

@@ -1,4 +1,4 @@
-import { Card, CardContent, Grid, Typography } from "@mui/material";
+import { Card, CardContent, Fade, Grid, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import React from "react";
 import useProduct from "../../common/hooks/useProduct";
@@ -13,9 +13,11 @@ export default function ProductProposal() {
       <Grid container spacing={2}>
         {similarProducts.map((p, i) => (
           <Grid key={i} item xs={12} sm={6} md={4}>
-            <Card>
-              <CardContent>{p.title}</CardContent>
-            </Card>
+            <Fade in>
+              <Card>
+                <CardContent>{p.title}</CardContent>
+              </Card>
+            </Fade>
           </Grid>
         ))}
       </Grid>
