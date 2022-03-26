@@ -5,9 +5,13 @@ export default function useCart() {
     JSON.parse(window.localStorage.getItem("cart")) || []
   );
 
-  const nbItems = cart.length;
+  const nbItems = cart.reduce((acc, val) => acc + parseInt(val.qty), 0);
 
-  const productOrUndefined = (id) => cart.find((obj) => obj.id === id);
+  const totalPrice =
+    0 || cart.reduce((acc, val) => acc + parseFloat(val.qty * val.price), 0);
+
+  const productOrUndefined = (productId) =>
+    cart.find((cartItem) => cartItem.id === productId);
 
   const orderIsValid = ({ qty }) => {
     return !isNaN(qty) && qty > 0;
@@ -15,25 +19,22 @@ export default function useCart() {
 
   const addToCart = (product, qty) => {
     if (!orderIsValid({ qty })) return;
-    const updatedCart = cart.map((item) => {
-      return product.id === item.id
-        ? {
-            id: item.id,
-            qty: parseInt(item.qty) + parseInt(qty),
-            data: product,
-          }
-        : item;
-    });
-    const finalCart = productOrUndefined(product.id)
-      ? updatedCart
-      : [...cart, { id: product.id, qty: parseInt(qty), data: product }];
-    setCart(finalCart);
+
+    const newCart = productOrUndefined(product.id)
+      ? cart.map((cartItem) =>
+          cartItem.id === product.id
+            ? { ...product, qty: parseInt(cartItem.qty) + parseInt(qty) }
+            : cartItem
+        )
+      : [...cart, { ...product, qty: qty }];
+
+    setCart(newCart);
   };
 
-  const removeFromCart = ({ id }) => {
-    if (productOrUndefined(id)) {
-      const finalCart = cart.filter((product) => product.id !== id);
-      setCart(finalCart);
+  const removeFromCart = (product) => {
+    if (productOrUndefined(product.id)) {
+      const newCart = cart.filter((cartItem) => cartItem.id !== product.id);
+      setCart(newCart);
     }
   };
 
@@ -43,8 +44,7 @@ export default function useCart() {
 
   useEffect(() => {
     window.localStorage.setItem("cart", JSON.stringify(cart));
-    console.log(cart);
   }, [cart]);
 
-  return { cart, nbItems, addToCart, removeFromCart, clearCart };
+  return { cart, nbItems, totalPrice, addToCart, removeFromCart, clearCart };
 }

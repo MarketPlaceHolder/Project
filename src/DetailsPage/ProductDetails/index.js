@@ -5,6 +5,7 @@ import {
   Rating,
   TextField,
   Typography,
+  Fade,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import { useContext, useState } from "react";
@@ -29,15 +30,17 @@ export default function ProductDetails({ product }) {
   return (
     <Grid container justifyContent="center" alignItems="center" spacing={3}>
       <Grid item xs={12} md={4}>
-        <CardMedia
-          component="img"
-          sx={{
-            objectFit: "contain",
-            maxHeight: "50vh",
-          }}
-          image={image}
-          alt={title}
-        />
+        <Fade in>
+          <CardMedia
+            component="img"
+            sx={{
+              objectFit: "contain",
+              maxHeight: "50vh",
+            }}
+            image={image}
+            alt={title}
+          />
+        </Fade>
       </Grid>
       <Grid item xs={12} md={8}>
         <Typography variant="h5">{title}</Typography>

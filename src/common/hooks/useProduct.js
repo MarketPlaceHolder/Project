@@ -3,16 +3,17 @@ import { useParams, useNavigate } from "react-router-dom";
 
 export default function useProduct(paramId) {
   const [product, setProduct] = useState({});
-  const [similarProduct, setSimilarProduct] = useState([]);
+  const [similarProducts, setSimilarProducts] = useState([]);
   const { productId: uriId } = useParams();
-  const finalId = parseInt(paramId) || parseInt(uriId);
+  const id = parseInt(paramId) || parseInt(uriId);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await fetch(
-          `https://fakestoreapi.com/products/${finalId}`
+          `https://fakestoreapi.com/products/${id}`,
+          { mode: "cors" }
         );
         const json = await response.json();
         if (!json) return navigate("/");
@@ -25,12 +26,13 @@ export default function useProduct(paramId) {
     const fetchSimilarItems = async () => {
       try {
         const response = await fetch(
-          `https://fakestoreapi.com/products/category/${product.category}`
+          `https://fakestoreapi.com/products/category/${product.category}`,
+          { mode: "cors" }
         );
         const json = await response.json();
         if (!json) return navigate("/");
-        const filtered = json.filter((item) => item.id !== finalId).slice(0, 3);
-        setSimilarProduct(filtered);
+        const filtered = json.filter((item) => item.id !== id).slice(0, 3);
+        setSimilarProducts(filtered);
       } catch (e) {
         console.error(e);
       }
@@ -38,7 +40,7 @@ export default function useProduct(paramId) {
 
     fetchProduct();
     fetchSimilarItems();
-  }, [finalId, navigate, product.category]);
+  }, [id, navigate, product.category]);
 
-  return { product, similarProduct };
+  return { product, similarProducts };
 }
