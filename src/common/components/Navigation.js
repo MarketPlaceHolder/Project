@@ -35,7 +35,7 @@ export default function TemporaryDrawer() {
     >
       <List>
         {urls.map((url, index) => (
-          <Link to={url.to}>
+          <Link key={index} to={url.to}>
             <ListItem button key={index}>
               <ListItemText>{url.text}</ListItemText>
             </ListItem>

@@ -33,10 +33,10 @@ export default function Cart() {
     <>
       <IconButton
         size="large"
-        color="primary"
+        sx={{ color: "#fff" }}
         onClick={() => nbItems > 0 && setOpen(true)}
       >
-        <Badge badgeContent={nbItems} color="success">
+        <Badge badgeContent={nbItems} color="warning">
           <ShoppingCartIcon fontSize="large" />
         </Badge>
       </IconButton>

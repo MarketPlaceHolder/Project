@@ -23,6 +23,7 @@ export default () => {
   const displayProduct = (currentProduct) => {
     return (
       <ProductsCard
+        key={currentProduct.id}
         title={currentProduct.title}
         image={currentProduct.image}
         category={currentProduct.category}

@@ -22,16 +22,20 @@ export default () => {
     const to = `${pathnames.slice(0, key + 1).join("/")}`;
     if (key === 0) {
       return (
-        <LinkRouter underline="hover" color="inherit" to="/">
+        <LinkRouter key={key} underline="hover" color="inherit" to="/">
           Home
         </LinkRouter>
       );
     }
     if (key === pathnames.length - 1) {
-      return <Typography color="text.primary">{path}</Typography>;
+      return (
+        <Typography key={key} color="text.primary">
+          {path}
+        </Typography>
+      );
     }
     return (
-      <LinkRouter underline="hover" color="inherit" to={to}>
+      <LinkRouter key={key} underline="hover" color="inherit" to={to}>
         {path}
       </LinkRouter>
     );
