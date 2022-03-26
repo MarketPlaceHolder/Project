@@ -17,17 +17,15 @@ export default function useCart() {
   const addToCart = (product, qty) => {
     if (!orderIsValid({ qty })) return;
 
-    const updatedCart = cart.map((cartItem) => {
-      return product.id === cartItem.id
-        ? { ...product, qty: parseInt(cartItem.qty) + parseInt(qty) }
-        : cartItem;
-    });
+    const newCart = productOrUndefined(product.id)
+      ? cart.map((cartItem) =>
+          cartItem.id === product.id
+            ? { ...product, qty: parseInt(cartItem.qty) + parseInt(qty) }
+            : cartItem
+        )
+      : [...cart, { ...product, qty: qty }];
 
-    const finalCart = productOrUndefined(product.id)
-      ? updatedCart
-      : [...cart, { ...product, qty: parseInt(qty) }];
-
-    setCart(finalCart);
+    setCart(newCart);
   };
 
   const removeFromCart = (product) => {
