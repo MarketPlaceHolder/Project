@@ -15,10 +15,8 @@ export default function ({ products, setSelectedCategory, selectedCategory }) {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Category</InputLabel>
+        <InputLabel>Category</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
           label="Category"
           value={selectedCategory}
           onChange={handleChange}

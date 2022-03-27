@@ -8,7 +8,6 @@ import { styled } from "@mui/system";
 
 function handleClick(event) {
   event.preventDefault();
-  console.info("You clicked a breadcrumb.");
 }
 const LinkRouter = (props) => <Link {...props} component={RouterLink}></Link>;
 const Breadcrumb = styled("div")({

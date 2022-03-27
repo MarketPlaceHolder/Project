@@ -46,6 +46,9 @@ export default () => {
     });
     const data = await response.json();
     setProducts(data);
+    return () => {
+      setProducts([]);
+    };
   }, []);
 
   const filterCategory = (currentProduct) => {
