@@ -8,7 +8,24 @@ const AllProductsPage = styled("div")({
   display: "flex",
   alignItems: "center",
   marginBottom: "50px",
+  marginLeft: "20px",
+  marginRight: "20px",
   flexDirection: "column",
+  "@media(min-width:500px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr",
+    },
+  },
+  "@media(min-width:720px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr 1fr",
+    },
+  },
+  "@media(min-width:950px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+    },
+  },
   "& .grid": {
     display: "grid",
     gridGap: "30px",
