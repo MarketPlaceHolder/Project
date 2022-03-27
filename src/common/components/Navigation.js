@@ -6,6 +6,7 @@ import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import { Link } from "react-router-dom";
+import MenuOpenIcon from "@mui/icons-material/MenuOpen";
 
 export default function TemporaryDrawer() {
   const [state, setState] = React.useState({
@@ -50,11 +51,14 @@ export default function TemporaryDrawer() {
       {["right"].map((anchor) => (
         <React.Fragment key={anchor}>
           <Button
-            variant="contained"
-            color="success"
+            variant="outlined"
             onClick={toggleDrawer(anchor, true)}
+            sx={{
+              backgroundColor: "white",
+              "&:hover": { backgroundColor: "white" },
+            }}
           >
-            Menu
+            <MenuOpenIcon></MenuOpenIcon>
           </Button>
           <Drawer
             anchor={anchor}
