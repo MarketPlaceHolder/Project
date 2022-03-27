@@ -1,4 +1,3 @@
-//TODO Breadcrumb
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
@@ -29,7 +28,7 @@ export default () => {
     if (key === pathnames.length - 1) {
       return (
         <Typography key={key} color="text.primary">
-          {path}
+          produit n°{path}
         </Typography>
       );
     }

@@ -73,6 +73,7 @@ export default () => {
       ></ProductsCard>
     );
   };
+
   return (
     <AllProductsPage>
       <div className="searchcombo">
