@@ -39,7 +39,7 @@ const AllProductsPage = styled("div")({
 export default () => {
   const [input, setInput] = React.useState("");
   const [products, setProducts] = React.useState([]);
-  const [selectedCategory, setSelectedCategory] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState("all");
   React.useEffect(async () => {
     const response = await fetch("/api/products.json");
     const data = await response.json();
@@ -47,7 +47,7 @@ export default () => {
   }, []);
 
   const filterCategory = (currentProduct) => {
-    if (selectedCategory === "") {
+    if (selectedCategory === "all") {
       return true;
     }
     return currentProduct.category === selectedCategory;
@@ -74,6 +74,7 @@ export default () => {
         <CategoryFilter
           products={products}
           setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
         ></CategoryFilter>
         <SearchBar input={input} setInput={setInput}></SearchBar>
       </div>
