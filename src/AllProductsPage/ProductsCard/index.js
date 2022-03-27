@@ -10,8 +10,6 @@ export default function ProductsCard({ title, image, category, id }) {
   return (
     <Card
       sx={{
-        maxWidth: 345,
-        minWidth: 200,
         boxShadow: "2px 2px 5px #aaa",
         backgroundColor: "#eee",
       }}

@@ -8,10 +8,26 @@ const AllProductsPage = styled("div")({
   display: "flex",
   alignItems: "center",
   marginBottom: "50px",
+  marginLeft: "20px",
+  marginRight: "20px",
   flexDirection: "column",
+  "@media(min-width:500px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr",
+    },
+  },
+  "@media(min-width:720px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr 1fr",
+    },
+  },
+  "@media(min-width:950px)": {
+    "& .grid": {
+      gridTemplateColumns: "1fr 1fr 1fr 1fr",
+    },
+  },
   "& .grid": {
     display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
     gridGap: "30px",
   },
   "& .searchcombo": {
@@ -23,15 +39,17 @@ const AllProductsPage = styled("div")({
 export default () => {
   const [input, setInput] = React.useState("");
   const [products, setProducts] = React.useState([]);
-  const [selectedCategory, setSelectedCategory] = React.useState("");
+  const [selectedCategory, setSelectedCategory] = React.useState("all");
   React.useEffect(async () => {
-    const response = await fetch("/api/products.json");
+    const response = await fetch("https://fakestoreapi.com/products", {
+      mode: "cors",
+    });
     const data = await response.json();
     setProducts(data);
   }, []);
 
   const filterCategory = (currentProduct) => {
-    if (selectedCategory === "") {
+    if (selectedCategory === "all") {
       return true;
     }
     return currentProduct.category === selectedCategory;
@@ -58,6 +76,7 @@ export default () => {
         <CategoryFilter
           products={products}
           setSelectedCategory={setSelectedCategory}
+          selectedCategory={selectedCategory}
         ></CategoryFilter>
         <SearchBar input={input} setInput={setInput}></SearchBar>
       </div>

@@ -18,6 +18,17 @@ const Header = styled("header")({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+
+    "& .title": {
+      display: "none",
+    },
+  },
+  "@media(min-width:500px)": {
+    "& .flex": {
+      "& .title": {
+        display: "block",
+      },
+    },
   },
 });
 
@@ -25,7 +36,7 @@ export default () => (
   <Header>
     <div className="flex">
       <StoreIcon></StoreIcon>
-      <h1>MarketPlaceHolder</h1>
+      <h1 className="title">MarketPlaceHolder</h1>
     </div>
     <div className="flex">
       <Cart />
