@@ -8,6 +8,7 @@ const LandscapeCardMedia = styled("div")({
   display: "flex",
   justifyContent: "center",
   flexDirection: "column",
+  backgroundColor: "white",
 
   "& img": {
     width: "100%",
@@ -22,6 +23,7 @@ const PortraitCardMedia = styled("div")({
   overflow: "hidden",
   display: "flex",
   justifyContent: "center",
+  backgroundColor: "white",
 
   "& img": {
     height: "100%",
