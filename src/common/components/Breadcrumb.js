@@ -1,4 +1,3 @@
-//TODO Breadcrumb
 import * as React from "react";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
@@ -8,14 +7,13 @@ import { styled } from "@mui/system";
 
 function handleClick(event) {
   event.preventDefault();
-  console.info("You clicked a breadcrumb.");
 }
 const LinkRouter = (props) => <Link {...props} component={RouterLink}></Link>;
 const Breadcrumb = styled("div")({
   margin: "20px",
 });
 
-export default () => {
+const MyBreadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/");
   const displayPath = (path, key) => {
@@ -48,3 +46,4 @@ export default () => {
     </Breadcrumb>
   );
 };
+export default MyBreadcrumb;

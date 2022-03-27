@@ -1,8 +1,7 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 
-export default ({ input, setInput }) => {
+const MySearchbar = ({ setInput }) => {
   const onchange = (event) => {
     setInput(event.target.value);
   };
@@ -15,3 +14,4 @@ export default ({ input, setInput }) => {
     />
   );
 };
+export default MySearchbar;
