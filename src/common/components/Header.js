@@ -31,7 +31,7 @@ const Header = styled("header")({
   },
 });
 
-export default () => (
+const MyHeader = () => (
   <Header>
     <div className="flex">
       <StoreIcon></StoreIcon>
@@ -43,3 +43,4 @@ export default () => (
     </div>
   </Header>
 );
+export default MyHeader;

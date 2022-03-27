@@ -13,7 +13,7 @@ const Breadcrumb = styled("div")({
   margin: "20px",
 });
 
-export default () => {
+const MyBreadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split("/");
   const displayPath = (path, key) => {
@@ -28,7 +28,7 @@ export default () => {
     if (key === pathnames.length - 1) {
       return (
         <Typography key={key} color="text.primary">
-          produit n°{path}
+          {path}
         </Typography>
       );
     }
@@ -46,3 +46,4 @@ export default () => {
     </Breadcrumb>
   );
 };
+export default MyBreadcrumb;

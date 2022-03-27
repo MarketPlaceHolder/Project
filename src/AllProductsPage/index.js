@@ -36,19 +36,19 @@ const AllProductsPage = styled("div")({
   },
 });
 
-export default () => {
+const MyAllProductsPage = () => {
   const [input, setInput] = React.useState("");
   const [products, setProducts] = React.useState([]);
   const [selectedCategory, setSelectedCategory] = React.useState("all");
-  React.useEffect(async () => {
-    const response = await fetch("https://fakestoreapi.com/products", {
-      mode: "cors",
-    });
-    const data = await response.json();
-    setProducts(data);
-    return () => {
-      setProducts([]);
-    };
+  React.useEffect(() => {
+    async function fetchData() {
+      const response = await fetch("https://fakestoreapi.com/products", {
+        mode: "cors",
+      });
+      const data = await response.json();
+      setProducts(data);
+    }
+    fetchData();
   }, []);
 
   const filterCategory = (currentProduct) => {
@@ -93,3 +93,4 @@ export default () => {
     </AllProductsPage>
   );
 };
+export default MyAllProductsPage;

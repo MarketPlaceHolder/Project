@@ -5,7 +5,11 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function ({ products, setSelectedCategory, selectedCategory }) {
+const CategoryFilter = ({
+  products,
+  setSelectedCategory,
+  selectedCategory,
+}) => {
   const categories = [...new Set(products.map((product) => product.category))];
 
   const handleChange = (event) => {
@@ -31,4 +35,5 @@ export default function ({ products, setSelectedCategory, selectedCategory }) {
       </FormControl>
     </Box>
   );
-}
+};
+export default CategoryFilter;
