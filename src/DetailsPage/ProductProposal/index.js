@@ -21,7 +21,7 @@ export default function ProductProposal() {
       </Typography>
       <Grid container spacing={2}>
         {similarProducts.map(({ id, title, image }) => (
-          <Grid key={id} item xs={12} sm={6} md={4}>
+          <Grid key={id} item xs={12} sm={6} m d={4}>
             <Fade in>
               <Link color="primary" to={`/products/${id}`}>
                 <Card>

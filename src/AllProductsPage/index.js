@@ -11,7 +11,6 @@ const AllProductsPage = styled("div")({
   flexDirection: "column",
   "& .grid": {
     display: "grid",
-    gridTemplateColumns: "repeat(4,1fr)",
     gridGap: "30px",
   },
   "& .searchcombo": {
