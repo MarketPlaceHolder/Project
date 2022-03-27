@@ -7,6 +7,7 @@ import Breadcrumb from "./common/components/Breadcrumb";
 
 import DetailsPage from "./DetailsPage";
 import { Box } from "@mui/material";
+import HomePage from "./HomePage";
 
 export const CartContext = createContext();
 
@@ -17,7 +18,7 @@ function App() {
         <Header></Header>
         <Breadcrumb></Breadcrumb>
         <Routes>
-          <Route path="*" element={<div>Not found</div>} />
+          <Route path="*" element={<HomePage />} />
           <Route path="/products" element={<AllProductsPage />}></Route>
           <Route path="/products/:productId" element={<DetailsPage />} />
         </Routes>
